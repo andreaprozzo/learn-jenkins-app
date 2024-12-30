@@ -47,7 +47,7 @@ pipeline {
             steps {
                 sh ''' 
                     npm install serve
-                    node_modules\.bin\serve -s build &
+                    C:/Users/andre/OneDrive/Desktop/DevOps/Jenkins Udemy Course/learn-jenkins-app/node_modules/.bin/serve -s build &
                     sleep 90
                     npx playwright test
                 '''
