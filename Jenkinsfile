@@ -50,7 +50,7 @@ pipeline {
                     npx playwright install chromium
                     node_modules/.bin/serve -s build &
                     sleep 90
-                    npx playwright test
+                    npx playwright test --reporter=line
                 '''
             }
         }
