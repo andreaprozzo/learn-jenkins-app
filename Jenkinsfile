@@ -4,28 +4,29 @@ pipeline {
     environment {
         //creo una variabile di ambiente con l'ID site dell'app deployata su Netlify
         NETLIFY_SITE_ID = '193e0854-0cb6-4fa5-b1c2-11666a93368a'
+        NETLIFY_AUTH_TOKEN = credentials ('netlify-token')
     }
 
     stages {
         
-        stage('build-december') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    ls -la
-                    node --version
-                    npm version 
-                    npm ci
-                    npm run build
-                    ls -la
-                '''
-            }
-        }
+        // stage('build-december') {
+        //     agent {
+        //         docker {
+        //             image 'node:18-alpine'
+        //             reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh '''
+        //             ls -la
+        //             node --version
+        //             npm version 
+        //             npm ci
+        //             npm run build
+        //             ls -la
+        //         '''
+        //     }
+        // }
 
         stage ('tests') {
             parallel {
@@ -67,7 +68,6 @@ pipeline {
                     } 
                     post {
                         always {
-
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
                     }
@@ -86,6 +86,7 @@ pipeline {
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
+                    node_modules/.bin/netlify status
                 '''
             }
         }
