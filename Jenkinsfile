@@ -59,13 +59,28 @@ pipeline {
                             sleep 15
                             npx playwright test --reporter=line
                         '''
-                    }
+                    } 
                     post {
                         always {
+
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                         }
                     }
                 }
+            }
+        }
+        stage('deploy') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    npm install netlify-cli
+                    netlify --version
+                '''
             }
         }
     }
