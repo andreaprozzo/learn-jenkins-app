@@ -59,6 +59,7 @@ pipeline {
                     }
                     steps {
                         sh ''' 
+                            echo "small change"
                             npm install serve
                             npx playwright install chromium
                             node_modules/.bin/serve -s build &
