@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NETLIFY_SITE_ID = '03d4042d-476c-4668-9ce8-34352dad73e4'
+        NETLIFY_SITE_ID = '5f3cfd3b-df1d-498f-9894-0ff9fe7a3643'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
     }
 
@@ -130,7 +130,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://peaceful-daffodil-303af5.netlify.app'
+                CI_ENVIRONMENT_URL = 'https://keen-gecko-3c6976.netlify.app'
             }
 
             steps {
