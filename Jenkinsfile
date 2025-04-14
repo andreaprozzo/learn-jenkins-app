@@ -103,7 +103,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://keen-gecko-3c6976.netlify.app'
+                CI_ENVIRONMENT_URL = 'https://keen-gecko-3c6976.netlify.app' 
             }
 
             steps {
