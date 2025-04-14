@@ -17,6 +17,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo 'test trigget git!'
                     ls -la
                     node --version
                     npm --version
